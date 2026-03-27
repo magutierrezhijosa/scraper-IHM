@@ -23,3 +23,6 @@ HEADERS = {
     "Accept-Language": "pt-PT,pt;q=0.9,en;q=0.8",
 }
 
+# --- Tiempos ---
+REQUEST_DELAY = 1.5
+REQUEST_TIMEOUT = 15
