@@ -26,3 +26,6 @@ HEADERS = {
 # --- Tiempos ---
 REQUEST_DELAY = 1.5
 REQUEST_TIMEOUT = 15
+
+# Terminamos el archivo  confi.py para tener las CONSTANTES en un modulo a parte
+# Por ahora nno vamos a agreams mas pero en un futuro se puede trabajar desde aqui
