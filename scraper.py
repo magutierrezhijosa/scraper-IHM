@@ -21,7 +21,7 @@ def fetch_page(url:str) -> BeautifulSoup | None:
         response.raise_for_status()
 
         # Pasamos a BeautifulSoup el response.txt y lo parseamos para interpretar ese HTML
-        return BeautifulSoup(response.txt, "html.parser")
+        return BeautifulSoup(response.text, "html.parser")
 
     # EXCEPCIONES
 
@@ -40,3 +40,9 @@ def fetch_page(url:str) -> BeautifulSoup | None:
     except requests.exceptions.RequestException as e : 
         print(f"  [!] Error de conexión en {url}: {e}")
         return None
+    
+
+# Funcion para pausar la ejecucion del programa 
+def polite_delay() -> None:
+    # Es la funcion de Python para "Dormir" el programa durante los segunndos que le indiques
+    time.sleep(REQUEST_DELAY)
