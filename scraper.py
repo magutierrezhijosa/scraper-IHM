@@ -44,5 +44,5 @@ def fetch_page(url:str) -> BeautifulSoup | None:
 
 # Funcion para pausar la ejecucion del programa 
 def polite_delay() -> None:
-    # Es la funcion de Python para "Dormir" el programa durante los segunndos que le indiques
+    # Es la funcion de Python para "Dormir" el programa durante los segundos que le indiques
     time.sleep(REQUEST_DELAY)
