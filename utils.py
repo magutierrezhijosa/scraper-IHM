@@ -25,4 +25,5 @@ def is_direct_pdf(url: str) -> bool:
 def is_external_link(url: str, external_domains: list) -> bool:
     # Extrae el dominio de la URL si es None devuelve una cadena vacia
     hostname = urlparse(url).hostname or ""
-    
+    # Compara el dominio extraido con la lista de dominios externos permitidos
+    return any(domain in hostname for domain in external_domains)
