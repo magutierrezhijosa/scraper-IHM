@@ -51,4 +51,27 @@ def extract_pdf_from_secondary_page(soup: BeautifulSoup, base_url: str) -> str |
         # Buscamos todos los encabezados de ese tipo en la página
         headings = soup.find_all(header_tag)
 
-        
+        # Iteramos sobre cada encabezado encontrado
+        for heading in headings:
+
+            # Si el texto del encabezado contiene la palabra "Anexos" 
+            if "Anexos" in heading.get_text():
+
+                # Si encontramos un encabezado con "Anexos", buscamos enlaces a PDF dentro de esa sección
+                container = heading.find_parent()
+
+                if container:
+
+                    pdf_anchor = container.find('a', href=lambda h: h and h.lower().endswith('.pdf'))
+
+                    if pdf_anchor:
+                        return build_absolute_url(pdf_anchor['href'], base_url)
+                    
+    print("    [⚠] Sección 'Anexos' no encontrada, buscando cualquier .pdf...")
+    # Si no encontramos un encabezado con "Anexos", buscamos enlaces a PDF en toda la página
+    pdf_anchor = soup.find('a', href=lambda h: h and h.lower().endswith('.pdf'))
+
+    if pdf_anchor:
+        return build_absolute_url(pdf_anchor['href'], base_url)
+    
+    return None
