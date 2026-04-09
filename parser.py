@@ -37,3 +37,18 @@ def extract_publications(soup: BeautifulSoup) -> list[dict]:
         })
 
     return publications
+
+
+# Declaramos la funcion para cuando visitamos una pagina secundaia. Tiene dos estrategias para extraer los enlaces a los PDF:
+# 1 . Recorre varios tipos de encabezados buscando uno que contenga el texto "Anexos". Si encuentra ese encabezado, busca enlaces a PDF dentro de esa sección.
+# 2. Si no encuentra un encabezado con "Anexos", busca enlaces a PDF en toda la página.
+def extract_pdf_from_secondary_page(soup: BeautifulSoup, base_url: str) -> str | None:
+    
+
+    # Buscamos encabezados que puedan indicar la sección de anexos
+    for header_tag in ['h2', 'h3', 'h4', 'h5', 'strong' , "b"]:
+
+        # Buscamos todos los encabezados de ese tipo en la página
+        headings = soup.find_all(header_tag)
+
+        
